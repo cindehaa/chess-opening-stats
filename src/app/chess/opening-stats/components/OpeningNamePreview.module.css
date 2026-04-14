@@ -1,0 +1,46 @@
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.nameButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  line-height: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-style: dotted;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.nameButton:hover,
+.nameButton:focus-visible {
+  text-decoration-color: currentColor;
+  outline: none;
+}
+
+.preview {
+  display: block;
+  padding: 0.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+}
+
+.boardPlaceholder {
+  width: 176px;
+  height: 176px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-border) 50%, transparent);
+}

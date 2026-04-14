@@ -1,0 +1,381 @@
+.page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.inputSection {
+  max-width: 480px;
+}
+
+.loadingSection {
+  max-width: 480px;
+}
+
+.errorSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 480px;
+}
+
+.errorMsg {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #f87171;
+  margin: 0;
+}
+
+.summaryBar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.summaryItem {
+  white-space: nowrap;
+}
+
+.summaryValue {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.resetBtn {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.resetBtn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.quickFilterBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.quickFilterLabel {
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.quickFilterChip {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  transition: border-color 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.quickFilterChip:has(.quickFilterCheckbox:checked) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.quickFilterChipSingle {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.quickFilterCheckbox {
+  accent-color: var(--color-accent);
+  width: 12px;
+  height: 12px;
+}
+
+.quickFilterDivider {
+  width: 1px;
+  height: 1rem;
+  background: var(--color-border);
+  margin: 0 0.25rem;
+}
+
+.quickFilterBtn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.quickFilterBtn:hover {
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.quickFilterBtnActive {
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  background: var(--color-accent);
+}
+
+.quickFilterInput {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-text);
+  width: 9rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.quickFilterInput::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.quickFilterInput:focus {
+  border-color: var(--color-accent);
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  opacity: 0.5;
+}
+
+/* ---- Quick filter collapsible section ---- */
+
+.quickFilterSection {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.45rem 0.6rem 0.6rem;
+  background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+}
+
+.quickFilterSummary {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.quickFilterSection[open] .quickFilterSummary {
+  margin-bottom: 0.55rem;
+}
+
+.quickFilterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.quickFilterRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.quickFilterDateInput {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s;
+  color-scheme: dark;
+  width: 8.5rem;
+}
+
+.quickFilterDateInput:focus {
+  border-color: var(--color-accent);
+}
+
+.quickFilterAdvanced {
+  margin-top: 0.1rem;
+}
+
+.quickFilterAdvancedSummary {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.7;
+}
+
+.quickFilterAdvancedContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+/* ---- Games section (collapsible carousel) ---- */
+.gamesSection {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  padding: 0.75rem 0.9rem;
+  scroll-margin-top: 1rem;
+}
+
+.gamesSectionSummary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gamesSectionActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copyLinkBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.1rem 0.2rem;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+  line-height: 1;
+}
+
+.copyLinkBtn:hover {
+  opacity: 1;
+}
+
+.gamesSectionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.gamesSectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.gamesSectionTitleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.gamesSectionMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--color-text-muted);
+}
+
+.gamesSectionMetaSep {
+  opacity: 0.4;
+}
+
+.wdlW { color: #4ade80; }
+.wdlD { color: var(--color-text-muted); }
+.wdlL { color: #f87171; }
+
+.gamesSectionCount {
+  color: var(--color-accent);
+}
+
+.gamesSectionChevron {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.gamesSection[open] .gamesSectionChevron {
+  transform: rotate(0deg);
+}
+
+.gamesSection:not([open]) .gamesSectionChevron {
+  transform: rotate(-90deg);
+}
