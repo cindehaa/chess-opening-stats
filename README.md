@@ -39,7 +39,3 @@ npm run dev
 
 Deployed with Vercel.
 
-## Contributions
-
-Contributions are very welcome!
-
