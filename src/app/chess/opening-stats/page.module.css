@@ -10,7 +10,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  align-items: center;
 }
 
 .title {
@@ -19,30 +19,22 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-text);
+  text-align: center;
   margin: 0;
-}
-
-.subtitle {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  margin: 0;
-  line-height: 1.5;
 }
 
 .inputSection {
-  max-width: 480px;
+  width: 100%;
 }
 
 .loadingSection {
-  max-width: 480px;
+  width: 100%;
 }
 
 .errorSection {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 480px;
 }
 
 .errorMsg {
@@ -378,4 +370,31 @@
 
 .gamesSection:not([open]) .gamesSectionChevron {
   transform: rotate(-90deg);
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.footerLink {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.footerLink:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }

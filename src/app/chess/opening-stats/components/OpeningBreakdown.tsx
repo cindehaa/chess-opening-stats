@@ -5,6 +5,7 @@ import type { AggregateStats, OpeningStats } from '../lib/analyzeOpenings'
 import { getEvalDisplayColor } from '../lib/evalDisplay'
 import { OpeningNamePreview } from './OpeningNamePreview'
 import styles from './OpeningBreakdown.module.css'
+import shared from './collapsible.module.css'
 
 type SortKey = 'name' | 'side' | 'games' | 'winRate' | 'medianEval'
 type SortDir = 'asc' | 'desc'
@@ -236,26 +237,26 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
 
   if (openingStats.length === 0) {
     return (
-      <section className={styles.section}>
-        <details className={styles.collapsible} open>
-          <summary className={styles.summary}>
-            <h2 className={styles.heading}>Per-Opening Breakdown</h2>
-            <span className={styles.chevron} aria-hidden="true">▾</span>
+      <section className={shared.section}>
+        <details className={shared.collapsible} open>
+          <summary className={shared.summary}>
+            <h2 className={shared.heading}>Per-Opening Breakdown</h2>
+            <span className={shared.chevron} aria-hidden="true">▾</span>
           </summary>
-          <p className={styles.empty}>No openings detected in these games.</p>
+          <p className={shared.empty}>No openings detected in these games.</p>
         </details>
       </section>
     )
   }
 
   return (
-    <section className={styles.section}>
-      <details className={styles.collapsible} open>
-        <summary className={styles.summary}>
-          <h2 className={styles.heading}>Per-Opening Breakdown</h2>
-          <div className={styles.summaryActions}>
+    <section className={shared.section}>
+      <details className={shared.collapsible} open>
+        <summary className={shared.summary}>
+          <h2 className={shared.heading}>Per-Opening Breakdown</h2>
+          <div className={shared.summaryActions}>
             <label
-              className={styles.previewToggle}
+              className={shared.previewToggle}
               onClick={(e) => e.stopPropagation()}
             >
               <input
@@ -267,7 +268,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
             </label>
             {onCopyLink && (
               <button
-                className={styles.copyLinkBtn}
+                className={shared.copyLinkBtn}
                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onCopyLink('breakdown') }}
                 title="Copy link to this analysis"
                 aria-label="Copy link"
@@ -276,7 +277,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
               </button>
             )}
           </div>
-          <span className={styles.chevron} aria-hidden="true">▾</span>
+          <span className={shared.chevron} aria-hidden="true">▾</span>
         </summary>
 
         <div className={styles.highlightColumns}>
@@ -284,7 +285,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
             <p className={styles.highlightGroupLabel}>You cooked</p>
             <div className={styles.highlightScroll}>
               {strongestOpenings.length === 0 ? (
-                <p className={styles.empty}>Not enough data available.</p>
+                <p className={shared.empty}>Not enough data available.</p>
               ) : (
                 <div className={styles.highlights}>
                   {strongestOpenings.map((s) => (
@@ -309,7 +310,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
             <p className={styles.highlightGroupLabel}>You got cooked</p>
             <div className={styles.highlightScroll}>
               {weakestOpenings.length === 0 ? (
-                <p className={styles.empty}>Not enough data available.</p>
+                <p className={shared.empty}>Not enough data available.</p>
               ) : (
                 <div className={styles.highlights}>
                   {weakestOpenings.map((s) => (
@@ -333,12 +334,12 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
         </div>
       </details>
 
-      <details id="detailed-opening-info" className={styles.collapsible} open>
-        <summary className={styles.summary}>
-          <h2 className={styles.heading}>Detailed Opening Information</h2>
-          <div className={styles.summaryActions}>
+      <details id="detailed-opening-info" className={shared.collapsible} open>
+        <summary className={shared.summary}>
+          <h2 className={shared.heading}>Detailed Opening Information</h2>
+          <div className={shared.summaryActions}>
             <label
-              className={styles.previewToggle}
+              className={shared.previewToggle}
               onClick={(e) => e.stopPropagation()}
             >
               <input
@@ -350,7 +351,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
             </label>
             {onCopyLink && (
               <button
-                className={styles.copyLinkBtn}
+                className={shared.copyLinkBtn}
                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onCopyLink('detailed') }}
                 title="Copy link to this analysis"
                 aria-label="Copy link"
@@ -359,7 +360,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
               </button>
             )}
           </div>
-          <span className={styles.chevron} aria-hidden="true">▾</span>
+          <span className={shared.chevron} aria-hidden="true">▾</span>
         </summary>
 
         <div className={styles.filterBar}>
@@ -373,7 +374,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
         </div>
 
         {filtered.length === 0 && q && (
-          <p className={styles.empty}>No openings matching "{filter}".</p>
+          <p className={shared.empty}>No openings matching "{filter}".</p>
         )}
 
         <div className={styles.tableWrapper}>

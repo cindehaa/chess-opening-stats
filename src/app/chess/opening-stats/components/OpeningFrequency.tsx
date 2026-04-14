@@ -4,6 +4,7 @@ import { useState } from 'react'
 import type { OpeningStats } from '../lib/analyzeOpenings'
 import { OpeningNamePreview } from './OpeningNamePreview'
 import styles from './OpeningFrequency.module.css'
+import shared from './collapsible.module.css'
 
 type OpeningFrequencyProps = {
   openingStats: OpeningStats[]
@@ -28,7 +29,7 @@ function FrequencyList({
   const filtered = allForColor.slice(0, 6)
 
   if (filtered.length === 0) {
-    return <p className={styles.empty}>No games found</p>
+    return <p className={shared.empty}>No games found</p>
   }
 
   return (
@@ -65,13 +66,13 @@ export function OpeningFrequency({ openingStats, totalGames, onCopyLink, copyLin
   const [previewsExpanded, setPreviewsExpanded] = useState(false)
 
   return (
-    <section className={styles.section}>
-      <details className={styles.collapsible} open>
-        <summary className={styles.summary}>
-          <h2 className={styles.heading}>Opening Frequency</h2>
-          <div className={styles.summaryActions}>
+    <section className={shared.section}>
+      <details className={shared.collapsible} open>
+        <summary className={shared.summary}>
+          <h2 className={shared.heading}>Opening Frequency</h2>
+          <div className={shared.summaryActions}>
             <label
-              className={styles.previewToggle}
+              className={shared.previewToggle}
               onClick={(e) => e.stopPropagation()}
             >
               <input
@@ -83,7 +84,7 @@ export function OpeningFrequency({ openingStats, totalGames, onCopyLink, copyLin
             </label>
             {onCopyLink && (
               <button
-                className={styles.copyLinkBtn}
+                className={shared.copyLinkBtn}
                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onCopyLink() }}
                 title="Copy link to this analysis"
                 aria-label="Copy link"
@@ -92,7 +93,7 @@ export function OpeningFrequency({ openingStats, totalGames, onCopyLink, copyLin
               </button>
             )}
           </div>
-          <span className={styles.chevron} aria-hidden="true">▾</span>
+          <span className={shared.chevron} aria-hidden="true">▾</span>
         </summary>
 
         <div className={styles.columns}>

@@ -32,6 +32,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Themed scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(142, 30%, 50%, 0.35);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsla(142, 30%, 50%, 0.2) transparent;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --color-bg: #f7f8f7;
