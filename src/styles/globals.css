@@ -1,0 +1,46 @@
+:root {
+  --color-bg: #0b0e0c;
+  --color-text: #dfe2e0;
+  --color-text-muted: #758a7d;
+  --color-accent: #21c45d;
+  --color-accent-light: #51e186;
+  --color-surface: hsla(142, 30%, 50%, 0.05);
+  --color-surface-hover: hsla(142, 30%, 50%, 0.09);
+  --color-border: hsla(142, 30%, 50%, 0.1);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f7f8f7;
+    --color-text: #1c211e;
+    --color-text-muted: #6c7a71;
+    --color-accent: #1a9948;
+    --color-accent-light: #1fad53;
+    --color-surface: hsla(142, 20%, 50%, 0.05);
+    --color-surface-hover: hsla(142, 20%, 50%, 0.09);
+    --color-border: hsla(142, 20%, 50%, 0.12);
+  }
+}
