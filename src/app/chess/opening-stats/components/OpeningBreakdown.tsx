@@ -68,6 +68,14 @@ function matchAtom(term: string, s: OpeningStats): boolean {
   if (evalGt) return s.medianEvalCp !== null && s.medianEvalCp / 100 > parseFloat(evalGt[1])
   const evalLt = tl.match(/^eval?<([+-]?[\d.]+)$/)
   if (evalLt) return s.medianEvalCp !== null && s.medianEvalCp / 100 < parseFloat(evalLt[1])
+  const gamesGt = tl.match(/^games?>([\d]+)$/)
+  if (gamesGt) return s.gamesCount > parseInt(gamesGt[1], 10)
+  const gamesLt = tl.match(/^games?<([\d]+)$/)
+  if (gamesLt) return s.gamesCount < parseInt(gamesLt[1], 10)
+  const gamesEq = tl.match(/^games?=([\d]+)$/)
+  if (gamesEq) return s.gamesCount === parseInt(gamesEq[1], 10)
+  const sideEq = tl.match(/^side=([wb])$/)
+  if (sideEq) return s.color === sideEq[1]
   return s.name.toLowerCase().includes(tl) || s.eco.toLowerCase().startsWith(tl)
 }
 
@@ -367,7 +375,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
           <input
             className={styles.filterInput}
             type="search"
-            placeholder="e.g. (italian || B06) && win%>55"
+            placeholder="e.g. (italian || B06) && win%>55 && games>5 && side=w"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           />
