@@ -289,6 +289,7 @@ export async function fetchGames(
   criteria?: FetchCriteria,
   onProgress?: (fetched: number, target: number) => void
 ): Promise<GameSummary[]> {
+  if (!username || username.length > 255) throw new Error('Invalid username')
   if (platform === 'lichess') return fetchLichessGamesByTC(username, tcBuckets, max, criteria, onProgress)
   return fetchChesscomGamesByTC(username, tcBuckets, max, criteria, onProgress)
 }

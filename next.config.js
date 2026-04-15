@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  experimental: {
-    // stockfish.js is a browser-only WASM package — skip SSR bundling entirely
-    serverComponentsExternalPackages: ['stockfish.js'],
-  },
+  // stockfish.js is a browser-only WASM package — skip SSR bundling entirely
+  serverExternalPackages: ['stockfish.js'],
   async headers() {
     return [
       {
@@ -18,6 +16,10 @@ const nextConfig = {
       },
     ]
   },
+  // Empty turbopack config silences the "webpack config present but no turbopack config" error.
+  // serverExternalPackages already handles stockfish.js server-side, and Turbopack
+  // stubs Node built-ins (fs/path/os) in browser bundles automatically.
+  turbopack: {},
   webpack(config, { isServer }) {
     if (isServer) {
       // stockfish.js is browser-only — don't bundle it for the server

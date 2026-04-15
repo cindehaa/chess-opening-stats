@@ -93,6 +93,7 @@ export function GameCarousel({ openingName, analyses, username, fenEvalMap }: Ga
   }
 
   async function handleLichessAnalysis() {
+    if (!game) return
     const ply = game.totalBookMoves
 
     if (game.platform === 'lichess') {
