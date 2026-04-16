@@ -166,9 +166,9 @@
 }
 
 .resultWin {
-  background: color-mix(in srgb, #4ade80 15%, transparent);
-  color: #4ade80;
-  border: 1px solid color-mix(in srgb, #4ade80 40%, transparent);
+  background: color-mix(in srgb, var(--color-win) 15%, transparent);
+  color: var(--color-win);
+  border: 1px solid color-mix(in srgb, var(--color-win) 40%, transparent);
 }
 
 .resultDraw {
@@ -178,9 +178,9 @@
 }
 
 .resultLoss {
-  background: color-mix(in srgb, #f87171 15%, transparent);
-  color: #f87171;
-  border: 1px solid color-mix(in srgb, #f87171 40%, transparent);
+  background: color-mix(in srgb, var(--color-loss) 15%, transparent);
+  color: var(--color-loss);
+  border: 1px solid color-mix(in srgb, var(--color-loss) 40%, transparent);
 }
 
 .metaDetail {

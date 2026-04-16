@@ -4,6 +4,8 @@
   --color-text-muted: #758a7d;
   --color-accent: #21c45d;
   --color-accent-light: #51e186;
+  --color-win: #4ade80;
+  --color-loss: #f87171;
   --color-surface: hsla(142, 30%, 50%, 0.05);
   --color-surface-hover: hsla(142, 30%, 50%, 0.09);
   --color-border: hsla(142, 30%, 50%, 0.1);

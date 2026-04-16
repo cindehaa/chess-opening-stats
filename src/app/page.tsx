@@ -16,6 +16,36 @@ type Phase = 'idle' | 'loading' | 'results' | 'error'
 
 type CacheEntry = { games: GameSummary[]; max: number }
 
+const ANALYSIS_CACHE_VERSION = 1
+const ANALYSIS_CACHE_PREFIX = 'chess-opening-analysis-v' + ANALYSIS_CACHE_VERSION + ':'
+
+type AnalysisCacheEntry = { analyses: GameAnalysis[]; gameCount: number; savedAt: number }
+
+function readAnalysisCache(key: string): GameAnalysis[] | null {
+  try {
+    const raw = localStorage.getItem(ANALYSIS_CACHE_PREFIX + key)
+    if (!raw) return null
+    const entry: AnalysisCacheEntry = JSON.parse(raw)
+    // Expire after 24 hours
+    if (Date.now() - entry.savedAt > 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(ANALYSIS_CACHE_PREFIX + key)
+      return null
+    }
+    return entry.analyses
+  } catch {
+    return null
+  }
+}
+
+function writeAnalysisCache(key: string, analyses: GameAnalysis[], gameCount: number) {
+  try {
+    const entry: AnalysisCacheEntry = { analyses, gameCount, savedAt: Date.now() }
+    localStorage.setItem(ANALYSIS_CACHE_PREFIX + key, JSON.stringify(entry))
+  } catch {
+    // Ignore storage quota errors
+  }
+}
+
 const SHARE_SECTION_BY_KIND = {
   input: 'load-games',
   frequency: 'opening-frequency',
@@ -360,15 +390,24 @@ export default function TrainOpeningsPage() {
         return
       }
 
-      setLoadingMessage('Analyzing openings…')
-      setLoadingProgress(50)
-      const analyses = await analyzeGamesAsync(allGames, (done, total) => {
-        setLoadingProgress(50 + (done / total) * 50)
-      })
-      if (analyses.length === 0) {
-        setError('No valid standard games could be analyzed (variant or invalid PGN).')
-        setPhase('error')
-        return
+      // Build the analysis cache key from the actual games slice used
+      const analysisCacheKey = [cacheKey, allGames.length].join(':')
+      let analyses = readAnalysisCache(analysisCacheKey)
+
+      if (!analyses) {
+        setLoadingMessage('Analyzing openings…')
+        setLoadingProgress(50)
+        analyses = await analyzeGamesAsync(allGames, (done, total) => {
+          setLoadingProgress(50 + (done / total) * 50)
+        })
+        if (analyses.length === 0) {
+          setError('No valid standard games could be analyzed (variant or invalid PGN).')
+          setPhase('error')
+          return
+        }
+        writeAnalysisCache(analysisCacheKey, analyses, allGames.length)
+      } else {
+        setLoadingProgress(100)
       }
 
       setLoadedAnalyses(analyses)
@@ -596,9 +635,10 @@ export default function TrainOpeningsPage() {
                           </span>
                           <span className={styles.gamesSectionMetaSep}>·</span>
                           <span>
-                            {selectedOpeningStats.gamesCount === 0
-                              ? '0%'
-                              : `${Math.round((selectedOpeningStats.wins / selectedOpeningStats.gamesCount) * 100)}%`} win
+                            {(() => {
+                              const pct = selectedOpeningStats.gamesCount === 0 ? 0 : Math.round((selectedOpeningStats.wins / selectedOpeningStats.gamesCount) * 100)
+                              return <span style={{ color: pct >= 50 ? 'var(--color-win)' : 'var(--color-loss)' }}>{pct}% win</span>
+                            })()}
                           </span>
                           {selectedOpeningStats.medianEvalCp !== null && (
                             <>

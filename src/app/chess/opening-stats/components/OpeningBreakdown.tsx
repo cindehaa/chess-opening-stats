@@ -163,9 +163,9 @@ function SortHeader({ label, col, sortKey, sortDir, onSort, thClass, thActiveCla
 }
 
 function getWinRateColor(winRate: number): string {
-  if (winRate >= 50) return '#4ade80'
+  if (winRate >= 50) return 'var(--color-win)'
   if (winRate >= 35) return '#f59e0b'
-  return '#f87171'
+  return 'var(--color-loss)'
 }
 
 type OpeningBreakdownProps = {
@@ -297,7 +297,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
               ) : (
                 <div className={styles.highlights}>
                   {strongestOpenings.map((s) => (
-                    <div key={`${s.eco}:${s.color}`} className={styles.highlightCard}>
+                    <div key={`${s.eco}:${s.color}`} className={styles.highlightRow}>
                       <OpeningNamePreview
                         name={s.name}
                         fen={s.openingFen}
@@ -306,7 +306,11 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
                         forceExpanded={highlightPreviewsExpanded}
                       />
                       <span className={styles.highlightDetail}>
-                        {winRatePct(s)}% win · {s.gamesCount} games as {s.color === 'w' ? 'white' : 'black'}
+                        {s.gamesCount} {s.gamesCount === 1 ? 'game' : 'games'} as {s.color === 'w' ? 'white' : 'black'}
+                        {' · '}
+                        <span style={{ color: winRatePct(s) >= 50 ? 'var(--color-win)' : 'var(--color-loss)' }}>
+                          {winRatePct(s)}% win
+                        </span>
                       </span>
                     </div>
                   ))}
@@ -322,7 +326,7 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
               ) : (
                 <div className={styles.highlights}>
                   {weakestOpenings.map((s) => (
-                    <div key={`${s.eco}:${s.color}`} className={`${styles.highlightCard} ${styles.highlightCardWeak}`}>
+                    <div key={`${s.eco}:${s.color}`} className={styles.highlightRow}>
                       <OpeningNamePreview
                         name={s.name}
                         fen={s.openingFen}
@@ -331,7 +335,11 @@ export function OpeningBreakdown({ stats, openingFilter = '', evalDone = false, 
                         forceExpanded={highlightPreviewsExpanded}
                       />
                       <span className={styles.highlightDetail}>
-                        {winRatePct(s)}% win · {s.gamesCount} games as {s.color === 'w' ? 'white' : 'black'}
+                        {s.gamesCount} {s.gamesCount === 1 ? 'game' : 'games'} as {s.color === 'w' ? 'white' : 'black'}
+                        {' · '}
+                        <span style={{ color: winRatePct(s) >= 50 ? 'var(--color-win)' : 'var(--color-loss)' }}>
+                          {winRatePct(s)}% win
+                        </span>
                       </span>
                     </div>
                   ))}

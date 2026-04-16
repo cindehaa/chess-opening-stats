@@ -40,7 +40,7 @@
 .errorMsg {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: #f87171;
+  color: var(--color-loss);
   margin: 0;
 }
 
@@ -349,9 +349,9 @@
   opacity: 0.4;
 }
 
-.wdlW { color: #4ade80; }
+.wdlW { color: var(--color-win); }
 .wdlD { color: var(--color-text-muted); }
-.wdlL { color: #f87171; }
+.wdlL { color: var(--color-loss); }
 
 .gamesSectionCount {
   color: var(--color-accent);
