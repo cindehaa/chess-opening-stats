@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "chess-openings": "^0.1.1",
     "chess.js": "^1.4.0",
     "next": "^16.2.3",
