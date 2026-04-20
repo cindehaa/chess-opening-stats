@@ -469,10 +469,6 @@ export default function TrainOpeningsPage() {
 
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Chess Opening Statistics</h1>
-      </header>
-
       <section id="load-games" className={styles.inputSection}>
         <GameInput
           onAnalyze={handleAnalyze}
